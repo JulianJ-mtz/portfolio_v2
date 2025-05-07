@@ -1,0 +1,16 @@
+---
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+---
+
+<header class="bg-[--color-bg] text-[--color-text] w-full">
+    <nav class="flex items-center justify-around p-4">
+        <ul class="md:flex md:flex-row md:gap-x-10 max-md:hidden">
+            <a href="#home" class="navbar">About Me</a>
+            <a href="#formation" class="navbar">Formation</a>
+            <a href="#skills" class="navbar">Skills</a>
+            <a href="#projects" class="navbar">Projects</a>
+
+            <ThemeSwitcher />
+        </ul>
+    </nav>
+</header>
