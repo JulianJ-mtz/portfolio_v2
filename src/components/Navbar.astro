@@ -2,7 +2,7 @@
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-    { href: "/about", label: "~/about" },
+    { href: "/about", label: "/about" },
     { href: "/projects", label: "/projects" },
     { href: "/contact", label: "/contact" },
 ];
@@ -10,7 +10,7 @@ const navItems = [
 
 <nav class="navbar">
     <ul>
-        <li class="acronyms">jjmr</li>
+        <li class="acronyms"><a href="/"> ~/jjmr</a></li>
         {
             navItems.map((item) => (
                 <li>
@@ -39,24 +39,27 @@ const navItems = [
     }
 </style>
 <script>
-    const themeToggle = document.getElementById("theme-toggle");
-    const body = document.body;
-    if (!themeToggle) {
-        console.error("Theme toggle button not found");
-    } else {
+    document.addEventListener("astro:after-swap", setupThemeToggle);
+    document.addEventListener("DOMContentLoaded", setupThemeToggle);
+
+    function setupThemeToggle() {
+        const themeToggle = document.getElementById("theme-toggle");
+        const body = document.body;
+        if (!themeToggle) return;
+
         const currentTheme = localStorage.getItem("theme") || "dark";
         body.className = currentTheme;
         updateThemeIcon(currentTheme);
-        themeToggle.addEventListener("click", () => {
+
+        themeToggle.onclick = () => {
             const newTheme = body.className === "dark" ? "light" : "dark";
             body.className = newTheme;
             localStorage.setItem("theme", newTheme);
             updateThemeIcon(newTheme);
-        });
-    }
-    function updateThemeIcon(theme: string): void {
-        if (themeToggle) {
-            themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+        };
+
+        function updateThemeIcon(theme: string) {
+            themeToggle!.textContent = theme === "dark" ? "☀️" : "🌙";
         }
     }
 </script>

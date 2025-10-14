@@ -54,13 +54,13 @@ nav ul {
     align-items: flex-end;
 }
 
-nav ul li:first-child {
+nav ul li:first-child a {
     font-weight: 800;
     color: var(--color-primary);
 }
 
 @media (min-width: 768px) {
-    nav ul li:first-child {
+    nav ul li:first-child a {
         margin-top: 3rem;
     }
 }
