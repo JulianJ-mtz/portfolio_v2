@@ -14,13 +14,7 @@ const navItems = [
         {
             navItems.map((item) => (
                 <li>
-                    <a
-                        href={item.href}
-                        class:list={[
-                            "nav-link",
-                            { active: currentPath === item.href },
-                        ]}
-                    >
+                    <a href={item.href} class="nav-link" data-href={item.href}>
                         {item.label}
                     </a>
                 </li>
@@ -29,6 +23,7 @@ const navItems = [
         <li><button id="theme-toggle" class="theme-toggle">☀</button></li>
     </ul>
 </nav>
+
 <style>
     .active {
         font-weight: 800;
@@ -39,6 +34,15 @@ const navItems = [
     }
 </style>
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const currentPath = window.location.pathname;
+        document.querySelectorAll(".nav-link").forEach((link) => {
+            if (link.getAttribute("data-href") === currentPath) {
+                link.classList.add("active");
+            }
+        });
+    });
+
     document.addEventListener("astro:after-swap", setupThemeToggle);
     document.addEventListener("DOMContentLoaded", setupThemeToggle);
 
