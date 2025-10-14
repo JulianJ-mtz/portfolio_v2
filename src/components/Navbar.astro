@@ -34,17 +34,24 @@ const navItems = [
     }
 </style>
 <script>
+    document.addEventListener("astro:after-swap", () => {
+        setupThemeToggle();
+        activeTab();
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
+        setupThemeToggle();
+        activeTab();
+    });
+
+    function activeTab() {
         const currentPath = window.location.pathname;
         document.querySelectorAll(".nav-link").forEach((link) => {
             if (link.getAttribute("data-href") === currentPath) {
                 link.classList.add("active");
             }
         });
-    });
-
-    document.addEventListener("astro:after-swap", setupThemeToggle);
-    document.addEventListener("DOMContentLoaded", setupThemeToggle);
+    }
 
     function setupThemeToggle() {
         const themeToggle = document.getElementById("theme-toggle");
