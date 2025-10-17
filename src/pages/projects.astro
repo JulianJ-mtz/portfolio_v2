@@ -1,9 +1,97 @@
 ---
+import { Image } from "astro:assets";
+import CodeLinks from "../components/CodeLinks.astro";
+import Tags from "../components/Tags.astro";
 import Layout from "../layouts/Layout.astro";
+import ExternalIcon from "../images/ExternalIcon.astro";
+
+const VitalvetLinks = [
+  { label: "API", url: "https://github.com/JulianJ-mtz/vcc_api", blank: true },
+  { label: "App", url: "https://github.com/JulianJ-mtz/vcc-app", blank: true },
+  {
+    label: "IoT",
+    url: "https://github.com/JulianJ-mtz/vcc_esp32",
+    blank: true,
+  },
+];
 ---
 
 <Layout>
-    <main>
-        <h1>projects</h1>
-    </main>
+  <main>
+    <section>
+      <h1>Relevant Projects</h1>
+      <p class="subtitle">
+        My most relevant projects. I am still working on others, so this will be
+        updated soon.
+      </p>
+
+      <div class="featured-item">
+        <ul>
+          <li>
+            <a href="https://vitalvet-nine.vercel.app/" target="_blank"
+              >VitalVet application 🔗
+            </a>
+            <Tags tags={["ReactNative", "C#", ".NET", "JavaScript"]} />
+            <p class="description">
+              I collaborated with a team of designers and mechatronic engineers
+              to develop a mobile application that interconnected with smart
+              containers for storing medication in a dog shelter. My role
+              focused on creating the backend API using C# and .NET, as well as
+              developing the mobile application with React Native. The
+              application allowed users to manage medications, track inventory,
+              and receive notifications for medication administration and alerts
+              for medications nearing expiration.
+            </p>
+
+            <Image
+              src="/images/vitalvet.webp"
+              alt="vitalvet"
+              width={600}
+              height={200}
+            />
+
+            <CodeLinks text="Code:" links={VitalvetLinks} />
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  .featured-item h1 {
+    margin-bottom: 1rem;
+  }
+
+  .featured-item ul {
+    padding-left: 1.5rem;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .featured-item ul li {
+    display: list-item;
+  }
+
+  .featured-item a {
+    color: var(--color-text);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-right: 1rem;
+  }
+
+  .featured-item a:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .description {
+    margin-bottom: 2rem;
+    color: var(--color-text);
+    max-width: 600px;
+  }
+</style>

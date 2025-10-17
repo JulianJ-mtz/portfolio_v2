@@ -1,9 +1,77 @@
 ---
+import CodeLinks from "../components/CodeLinks.astro";
 import Layout from "../layouts/Layout.astro";
+
+const links = [
+  { label: "Experience", url: "/experience" },
+  { label: "Projects", url: "/projects" },
+];
+
+const contactLinks = [
+  { label: "Contacts", url: "/contact" },
+  { label: "Resume", url: "cv_jose_martinez.pdf", blank: true },
+];
 ---
 
 <Layout title="jjmr">
-    <main>
-        <section>under development</section>
-    </main>
+  <main>
+    <section>
+      <h1>Julian Martinez</h1>
+      <p class="subtitle">Software Developer</p>
+    </section>
+
+    <section class="description">
+      <p>
+        My name is Julián Martínez, and I am a software developer based in
+        Mexico. I enjoy web development and have a degree in Computer Science.
+        This is my personal website. For now, it is a portfolio, but I would
+        like to create a blog in the future or simply share things I like or
+        updates on my personal projects.
+      </p>
+
+      <br />
+
+      <p>
+        If you like, you can visit the following links. Here you can find more
+        about me and my work:
+      </p>
+      <CodeLinks links={links} />
+
+      <p>Here are my contact details and my resume:</p>
+      <CodeLinks links={contactLinks} />
+    </section>
+  </main>
+
+  <style>
+    .featured {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .featured-item h2 {
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .featured-item ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .featured-item a {
+      color: var(--color-text);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .featured-item a:hover {
+      color: var(--color-primary);
+    }
+  </style>
 </Layout>

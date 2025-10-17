@@ -1,0 +1,68 @@
+---
+interface CodeLink {
+  label: string;
+  url: string;
+  blank?: boolean;
+}
+
+interface Props {
+  links: CodeLink[];
+  text?: string;
+}
+
+const { links } = Astro.props;
+const text = Astro.props;
+---
+
+<div class="code_links">
+  {text?.text && <span class="prefix">{text.text}</span>}
+  {
+    links.map((link: CodeLink, index: number) => (
+      <span class="link-wrapper">
+        <a
+          href={link.url}
+          class="code-link"
+          target={link.blank ? "_blank" : "_self"}
+          rel={link.blank ? "noopener noreferrer" : undefined}
+        >
+          {link.label}
+        </a>
+        {index !== links.length - 1 && <span class="separator">,</span>}
+      </span>
+    ))
+  }
+</div>
+
+<style>
+  .code_links {
+    margin: 1rem 0rem 1rem 0rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .prefix {
+    margin-right: 0.25rem;
+  }
+
+  .link-wrapper {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .code-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .code-link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .separator {
+    margin-left: 0;
+  }
+</style>

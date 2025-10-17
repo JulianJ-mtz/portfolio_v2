@@ -1,76 +1,74 @@
 ---
-const currentPath = Astro.url.pathname;
-
 const navItems = [
-    { href: "/about", label: "/about" },
-    { href: "/projects", label: "/projects" },
-    { href: "/contact", label: "/contact" },
+  { href: "/", label: "~/jjmr" },
+  { href: "/experience", label: "/experience" },
+  { href: "/projects", label: "/projects" },
+  { href: "/contact", label: "/contact" },
 ];
 ---
 
 <nav class="navbar">
-    <ul>
-        <li class="acronyms"><a href="/"> ~/jjmr</a></li>
-        {
-            navItems.map((item) => (
-                <li>
-                    <a href={item.href} class="nav-link" data-href={item.href}>
-                        {item.label}
-                    </a>
-                </li>
-            ))
-        }
-        <li><button id="theme-toggle" class="theme-toggle">☀</button></li>
-    </ul>
+  <ul>
+    {
+      navItems.map((item) => (
+        <li>
+          <a href={item.href} class="nav-link" data-href={item.href}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+    <li><button id="theme-toggle" class="theme-toggle">☀</button></li>
+  </ul>
 </nav>
 
 <style>
-    .active {
-        font-weight: 800;
-    }
+  .active {
+    font-weight: 800;
+  }
 
-    .theme-toggle {
-        cursor: pointer;
-    }
+  .theme-toggle {
+    cursor: pointer;
+  }
 </style>
 <script>
-    document.addEventListener("astro:after-swap", () => {
-        setupThemeToggle();
-        activeTab();
+  document.addEventListener("astro:after-swap", () => {
+    setupThemeToggle();
+    activeTab();
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setupThemeToggle();
+    activeTab();
+  });
+
+  function activeTab() {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      if (link.getAttribute("data-href") === currentPath) {
+        link.classList.add("active");
+      }
     });
+  }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        setupThemeToggle();
-        activeTab();
-    });
+  function setupThemeToggle() {
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+    if (!themeToggle) return;
 
-    function activeTab() {
-        const currentPath = window.location.pathname;
-        document.querySelectorAll(".nav-link").forEach((link) => {
-            if (link.getAttribute("data-href") === currentPath) {
-                link.classList.add("active");
-            }
-        });
+    const currentTheme = localStorage.getItem("theme") || "dark";
+    body.className = currentTheme;
+    updateThemeIcon(currentTheme);
+
+    themeToggle.onclick = () => {
+      const newTheme = body.className === "dark" ? "light" : "dark";
+      body.className = newTheme;
+      localStorage.setItem("theme", newTheme);
+      updateThemeIcon(newTheme);
+    };
+
+    function updateThemeIcon(theme: string) {
+      themeToggle!.textContent = theme === "dark" ? "☀️" : "🌙";
     }
-
-    function setupThemeToggle() {
-        const themeToggle = document.getElementById("theme-toggle");
-        const body = document.body;
-        if (!themeToggle) return;
-
-        const currentTheme = localStorage.getItem("theme") || "dark";
-        body.className = currentTheme;
-        updateThemeIcon(currentTheme);
-
-        themeToggle.onclick = () => {
-            const newTheme = body.className === "dark" ? "light" : "dark";
-            body.className = newTheme;
-            localStorage.setItem("theme", newTheme);
-            updateThemeIcon(newTheme);
-        };
-
-        function updateThemeIcon(theme: string) {
-            themeToggle!.textContent = theme === "dark" ? "☀️" : "🌙";
-        }
-    }
+  }
 </script>

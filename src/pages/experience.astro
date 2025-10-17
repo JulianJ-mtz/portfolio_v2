@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import CodeLinks from "../components/CodeLinks.astro";
+import Tags from "../components/Tags.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <main>
+    <section>
+      <h1>Professional Experience</h1>
+      <p class="subtitle">My professional so far</p>
+
+      <div class="featured-item">
+        <ul>
+          <li>
+            <a href="https://www.pinnacleaerospace.com/"  target="_blank"
+              >Pinnacle Aerospace Intern Developer 🔗</a
+            >
+            <Tags tags={["Angular", ".NET"]} />
+            <p class="description">
+              Developed and maintained internal web applications using Angular
+              and .NET to streamline operations and improve efficiency. Worked
+              closely with cross-functional teams to gather requirements in
+              Agile methodology, propose design solutions, and implement new
+              features.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .featured {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .featured-item h1 {
+    margin-bottom: 1rem;
+  }
+
+  .featured-item ul {
+    padding-left: 1.5rem;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .featured-item ul li {
+    display: list-item;
+  }
+
+  .featured-item a {
+    color: var(--color-text);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-right: 1rem;
+  }
+
+  .featured-item a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+</style>

@@ -1,9 +1,103 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import GithubIcon from "../images/GithubIcon.astro";
+import LinkedinIcon from "../images/LinkedinIcon.astro";
+import MailIcon from "../images/MailIcon.astro";
 ---
 
 <Layout>
-    <main>
-        <h1>contact</h1>
-    </main>
+  <main>
+    <section>
+      <h1>Contact</h1>
+      <p class="subtitle">Let's get in touch</p>
+    </section>
+    <section class="contact-info">
+      <p>Feel free to reach out for collaborations or opportunities.</p>
+      <div class="contact-grid">
+        <a href="mailto:josejulian.mtzr@gmail.com" class="contact-item">
+          <MailIcon color="var(--color-secondary)" />
+          <div class="contact-details">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">josejulian.mtzr@gmail.com</span>
+          </div>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/julián-martínez-666a4424a"
+          target="_blank"
+          class="contact-item"
+        >
+          <LinkedinIcon color="var(--color-secondary)" />
+          <div class="contact-details">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">Julián Martínez</span>
+          </div>
+        </a>
+        <a
+          href="https://github.com/JulianJ-mtz"
+          target="_blank"
+          class="contact-item"
+        >
+          <GithubIcon color="var(--color-secondary)" />
+          <div class="contact-details">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">JulianJ-mtz</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
 </Layout>
+<style>
+  .subtitle {
+    color: var(--color-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .contact-info {
+    max-width: 600px;
+  }
+  .contact-info > p {
+    margin-bottom: 2rem;
+    color: var(--color-text);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .contact-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  .contact-item:hover {
+    background-color: var(--color-border);
+  }
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .contact-label {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+  }
+  .contact-value {
+    color: var(--color-text);
+    font-size: 1rem;
+  }
+  @media (max-width: 768px) {
+    .contact-grid {
+      gap: 0.75rem;
+    }
+    .contact-item {
+      padding: 0.875rem;
+    }
+  }
+</style>
