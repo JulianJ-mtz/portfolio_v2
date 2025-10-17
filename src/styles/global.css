@@ -153,12 +153,18 @@ hr {
     height: auto;
     border-right: none;
     border-bottom: 1px solid var(--color-border);
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   nav ul {
     flex-direction: row;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+
+  nav ul li {
+    flex-shrink: 0;
   }
 
   nav ul li:last-child {
@@ -166,8 +172,31 @@ hr {
     margin-left: auto;
   }
 
+  nav a {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
   main {
     margin-left: 0;
-    padding: 0rem 2rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding: 0.75rem;
+  }
+
+  nav ul {
+    gap: 0.75rem;
+  }
+
+  nav a {
+    font-size: 0.8rem;
+  }
+  
+  main {
+    padding: 1rem;
   }
 }
