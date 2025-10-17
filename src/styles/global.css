@@ -6,6 +6,7 @@
   --color-secondary: #6e7681;
   --color-accent: #bb9af7;
   --color-border: #21262d;
+  --color-error: #ff7b72;
 }
 /* Light theme override */
 .light {
@@ -15,6 +16,7 @@
   --color-secondary: #57606a;
   --color-accent: #8250df;
   --color-border: #d0d7de;
+  --color-error: #ff0000;
 }
 
 body {
